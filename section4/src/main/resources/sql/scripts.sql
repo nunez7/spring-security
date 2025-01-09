@@ -8,3 +8,14 @@ INSERT INTO authorities VALUES ('user', 'read');
 INSERT INTO users VALUES ('admin', '{bcrypt}$2a$12$88.f6upbBvy0okEa7OfHFuorV29qeK.sVbB9VQ6J6dWM1bW6Qef8m', '1');
 INSERT INTO authorities VALUES ('admin', 'admin');
 
+CREATE TABLE customer (
+  id SERIAL NOT NULL,
+  email varchar(45) NOT NULL,
+  pwd varchar(200) NOT NULL,
+  role varchar(45) NOT NULL,
+  active boolean,
+  PRIMARY KEY (id)
+);
+
+INSERT  INTO customer (email, pwd, role, active) VALUES ('happy@example.com', '{noop}EazyBytes@12345', 'read', true);
+INSERT  INTO customer (email, pwd, role, active) VALUES ('admin@example.com', '{bcrypt}$2a$12$88.f6upbBvy0okEa7OfHFuorV29qeK.sVbB9VQ6J6dWM1bW6Qef8m', 'admin', true);
