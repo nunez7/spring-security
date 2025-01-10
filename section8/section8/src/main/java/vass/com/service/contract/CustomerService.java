@@ -1,4 +1,4 @@
-package vass.com.service;
+package vass.com.service.contract;
 
 import vass.com.model.Customer;
 

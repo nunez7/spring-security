@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import vass.com.model.Customer;
-import vass.com.service.CustomerService;
+import vass.com.service.contract.CustomerService;
 
 import java.util.List;
 

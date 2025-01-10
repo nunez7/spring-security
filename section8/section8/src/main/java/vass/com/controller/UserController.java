@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import vass.com.model.Customer;
-import vass.com.service.CustomerService;
+import vass.com.service.contract.CustomerService;
 
 @RestController
 @RequiredArgsConstructor
