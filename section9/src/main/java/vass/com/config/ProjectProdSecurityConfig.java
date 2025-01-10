@@ -33,7 +33,7 @@ public class ProjectProdSecurityConfig {
                 .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .cors(corsConfig -> corsConfig.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+                    config.setAllowedOrigins(Collections.singletonList("https://localhost:4200"));
                     config.setAllowedMethods(Collections.singletonList("*"));
                     config.setAllowCredentials(true);
                     config.setAllowedHeaders(Collections.singletonList("*"));
@@ -46,7 +46,11 @@ public class ProjectProdSecurityConfig {
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .requiresChannel(rcc -> rcc.anyRequest().requiresSecure()) // Only HTTPS
                 .authorizeHttpRequests(requests -> requests
-                    .requestMatchers("/account", "/balance", "/loans", "/cards", "/user").authenticated()
+                        .requestMatchers("/account").hasRole("USER")
+                                .requestMatchers("/balance").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/loans").hasRole("USER")
+                                .requestMatchers("/cards").hasRole("USER")
+                                .requestMatchers("/user").authenticated()
                     .requestMatchers("/notices", "/contact", "/error", "/register", "/invalidSession").permitAll());
         http.formLogin(withDefaults());
         http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));

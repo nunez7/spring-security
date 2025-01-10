@@ -46,7 +46,11 @@ public class ProjectSecurityConfig {
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .requiresChannel(rcc -> rcc.anyRequest().requiresInsecure()) // Only HTTP
                 .authorizeHttpRequests(requests -> requests
-                    .requestMatchers("/account", "/balance", "/loans", "/cards", "/user").authenticated()
+                    .requestMatchers("/account").hasRole("USER")
+                        .requestMatchers("/balance").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/loans").hasRole("USER")
+                        .requestMatchers("/cards").hasRole("USER")
+                        .requestMatchers("/user").authenticated()
                     .requestMatchers("/notices", "/contact", "/error", "/register", "/invalidSession").permitAll());
         http.formLogin(withDefaults());
         http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
