@@ -21,6 +21,7 @@ public class ContactController {
     private final Random random = new Random();
 
     @PostMapping("/contact")
+    // @PreFilter("filterObject.contactName != 'Test'")
     @PostFilter("filterObject.contactName != 'Test'")
     public List<Contact> saveContactInquiryDetails(@RequestBody List<Contact> contacts) {
         List<Contact> returnContacts = new ArrayList<>();
