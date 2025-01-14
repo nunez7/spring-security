@@ -22,7 +22,7 @@ public class ProjectSecurityConfig {
         return httpSecurity.build();
     }
 
-    @Bean
+    /*@Bean
     ClientRegistrationRepository clientRegistrationRepository() {
         ClientRegistration github = githubClientRegistration();
         ClientRegistration facebook = facebookClientRegistration();
@@ -37,6 +37,6 @@ public class ProjectSecurityConfig {
     private ClientRegistration facebookClientRegistration() {
         return CommonOAuth2Provider.FACEBOOK.getBuilder("facebook").clientId("974042741122392")
                 .clientSecret("36d48c25c1767d58b3101551513d7e1e").build();
-    }
+    }*/
 
 }
